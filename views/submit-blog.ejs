@@ -1,0 +1,66 @@
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Submit Your Blog</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, aliquid.</p>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    
+    <% if(infoSubmitObj != ''){ %> 
+        <div class="col-8 alert alert-success" role="alert">
+            <%= infoSubmitObj %> 
+        </div>
+    <% } %>
+    
+    <% if(infoErrorsObj != ''){ %> 
+        <div class="col-8 alert alert-danger" role="alert">
+              <%=   infoErrorsObj[0].message %>
+        </div>
+    <% } %>
+    
+    <div class="col-8">
+        
+        <form action="/submit-blog" enctype="multipart/form-data" method="POST">
+            
+            <div class="row g-3">
+                <div class="col-12">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" id="email" required>
+                </div>
+                
+                <div class="col-12">
+                    <label for="name" class="form-label">Blog Name</label>
+                    <input type="text" name="name" class="form-control" id="name" required>
+                </div>
+                
+                <div class="col-12">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="description" id="description" class="form-control" cols="30" rows="5" required></textarea>
+                </div>
+                
+                <div class="col-12">
+                    <label for="category">Select Category</label>
+                    <select name="category" class="form-select form-control" aria-label="Category">
+                        <option selected>Select Category</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Management">Management</option>
+                        <option value="Business">Business</option>
+                        <option value="Hacks">Hacks</option>
+                        <option value="College">College Life</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="col-12">
+                    <label for="image">Blog Image</label>
+                    <input type="file" class="form-control" name="image" accept="image/*">
+                </div>
+                
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit Blog</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
