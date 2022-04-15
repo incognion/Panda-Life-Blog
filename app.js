@@ -1,7 +1,7 @@
 const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
 const fileUpload = require('express-fileupload')
-const session = require('express-session')
+const session = require('cookie-session')
 const cookieParser = require('cookie-parser')
 const flash = require('connect-flash')
 
