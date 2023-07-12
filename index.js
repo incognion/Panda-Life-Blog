@@ -8,7 +8,7 @@ const MongoStore = require('connect-mongo')
 
 
 const app = express()
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 4444
 
 require('dotenv').config()
 
@@ -20,7 +20,7 @@ app.use(cookieParser('ReadingBlogSecure'))
 app.use(session({
     secret: 'ReadingBlogSecretSession',
     store: MongoStore.create({
-        mongoUrl: 'mongodb://pandaLife:OveMN01tzZCMiuV3@cluster0-shard-00-00.kwxqz.mongodb.net:27017,cluster0-shard-00-01.kwxqz.mongodb.net:27017,cluster0-shard-00-02.kwxqz.mongodb.net:27017/Blogs?ssl=true&replicaSet=atlas-ygx0pm-shard-0&authSource=admin&retryWrites=true&w=majority'
+        mongoUrl: process.env.MONGODB_URI
     }),
     saveUninitialized: true,
     resave: true

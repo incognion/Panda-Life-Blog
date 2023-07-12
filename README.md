@@ -1,2 +1,2 @@
-# Full Stack Blog App
-> it is made by using nodejs, expressjs, ejs, mongodb, mongoose & some more
+# Panda-Life-Blog
+> it is a full stack blog app made by using nodejs, expressjs, ejs, mongodb, mongoose & some more.
