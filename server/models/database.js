@@ -1,13 +1,18 @@
 const mongoose = require('mongoose')
-// mongoose.set('strictQuery', false)
-mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true, useUnifiedTopology: true})
 
-const db = mongoose.connection
-db.on('error',console.error.bind(console, 'connection error'))
-db.once('open', function(){
-    console.log('Database Connected')
-})
+mongoose.set('strictQuery',false)
+const db = async ()=>{
+    try{
+        const conn = await mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true, useUnifiedTopology: true})
+        console.log(`Database Connected: ${conn.connection.host}`)
+    } catch (error){
+        console.log(error)
+        process.exit(1)
+    }
+}
 
 // Models
 require('./Category')
 require('./Blog')
+
+module.exports = {db}

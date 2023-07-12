@@ -5,12 +5,11 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const flash = require('connect-flash')
 const MongoStore = require('connect-mongo')
-
+require('dotenv').config()
 
 const app = express()
 const PORT = process.env.PORT || 4444
 
-require('dotenv').config()
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
@@ -34,4 +33,9 @@ app.set('view engine','ejs')
 const routes = require('./server/routes/blogRoutes.js')
 app.use('/',routes)
 
-app.listen(PORT,()=> console.log(`Listening on port ${PORT}`))
+
+const {db} = require('./server/models/database.js')
+
+db().then(()=>{
+    app.listen(PORT,()=> console.log(`Listening on port ${PORT}`))
+})
