@@ -25,7 +25,7 @@ app.use(session({
     resave: true
 }))
 app.use(flash())
-app.use(fileUpload())
+app.use(fileUpload({useTempFiles : true}))
 
 app.set('layout', './layouts/main')
 app.set('view engine','ejs')

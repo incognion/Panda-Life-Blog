@@ -2,7 +2,9 @@ require('../models/database')
 const Category = require('../models/Category')
 const Blog = require('../models/Blog')
 
-
+const cloudinary = require('cloudinary').v2
+cloudinary.config({secure: true})
+console.log(cloudinary.config())
 // GET Homepage
 
 exports.homepage = async(req,resp)=>{
@@ -168,6 +170,12 @@ exports.submitBlogOnPost = async(req,resp)=>{
             imageUploadFile.mv(uploadPath,function(err){
                 if(err) return resp.status(500).send(err)
             })
+            
+            cloudinary.uploader.upload(imageUploadFile,(err,res)=>{
+                console.log(res)
+                console.log(err)
+            })
+            
         }
         
         const newBlog = new Blog({
