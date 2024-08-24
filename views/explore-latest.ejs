@@ -1,5 +1,12 @@
 <h1 class="pb-4">Explore Latest Blogs</h1>
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Explore Latest Blogs</li>
+    </ol>
+</nav>
+
 <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-5">
     <% if(typeof blog !== 'undefined' && blog.length >0){ %>
         <% blog.forEach(function(blog,index){ %>  

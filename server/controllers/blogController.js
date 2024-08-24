@@ -51,7 +51,7 @@ exports.exploreCategoriesById = async(req,resp)=>{
         let categoryId = req.params.id
         const limitNumber = 20
         const categoryById = await Blog.find({ 'category': categoryId }).limit(limitNumber)
-    resp.render('categories',{ title: 'Panda Life - Categories', categoryById })
+    resp.render('categories',{ title: 'Panda Life - Categories', categoryById, categoryId })
     } catch (error) {
         resp.status(500).send({ message: error.message || "Error Occurred" })
     }  
@@ -133,7 +133,7 @@ exports.exploreRandom = async(req,resp)=>{
         let random = Math.floor(Math.random() * count)
         let blog = await Blog.findOne().skip(random).exec()
         // console.log(blog)
-    resp.render('explore-random',{ title: 'Panda Life - Explore Random Blogs', blog})
+    resp.render('explore-random',{ title: 'Panda Life - Read a random blog', blog})
     } catch (error) {
         resp.status(500).send({ message: error.message || "Error Occurred" })
     }  
