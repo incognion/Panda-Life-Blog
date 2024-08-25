@@ -19,7 +19,7 @@ const blogSchema = new mongoose.Schema({
         required: 'This field is required'
     },
     image:{
-        type: String,
+        type: String
         // required: 'This field is required'
     }
 })
