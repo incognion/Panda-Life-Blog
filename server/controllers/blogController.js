@@ -150,26 +150,22 @@ exports.submitBlog = async(req,resp)=>{
 
 exports.submitBlogOnPost = async (req, resp) => {
     try {
-        let imgUrl = 'https://res.cloudinary.com/panda-life/image/upload/v1724588748/no-image-icon_hg2y7p.png'
+        let imgUrl = 'https://res.cloudinary.com/panda-life/image/upload/v1724588748/no-image-icon_hg2y7p.png';
 
-        if (req.files && Object.keys(req.files).length > 0) {
+        if (req.files && req.files.image) {
             const imageUploadFile = req.files.image;
-            const newImageName = Date.now() + imageUploadFile.name;
-            const uploadPath = require('path').resolve('./') + '/public/uploads/' + newImageName;
-
-            // Move the file to the temporary location
-            await new Promise((resolve, reject) => {
-                imageUploadFile.mv(uploadPath, (err) => {
-                    if (err) reject(err);
-                    else resolve();
+            const uploadToCloudinary = () => {
+                return new Promise((resolve, reject) => {
+                    cloudinary.uploader.upload_stream({ quality: "auto:low" }, (error, result) => {
+                        if (error) {
+                            return reject(new Error('Cloudinary upload failed: ' + error.message));
+                        }
+                        resolve(result.secure_url);
+                    }).end(imageUploadFile.data);
                 });
-            });
+            };
 
-            // Upload the file to Cloudinary
-            const uploadedResponse = await cloudinary.uploader.upload(uploadPath, { quality: "auto:low" })
-            imgUrl = uploadedResponse.secure_url;
-
-            // console.log('File uploaded to Cloudinary:', imgUrl);
+            imgUrl = await uploadToCloudinary();
         }
 
         // Save the blog with or without image URL
@@ -186,7 +182,7 @@ exports.submitBlogOnPost = async (req, resp) => {
         req.flash('infoSubmit', 'Your blog has been successfully added');
         resp.redirect('/submit-blog');
     } catch (error) {
-        req.flash('infoErrors', error);
+        req.flash('infoErrors', error.message);
         resp.redirect('/submit-blog');
     }
 }
