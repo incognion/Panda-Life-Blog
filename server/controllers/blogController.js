@@ -2,6 +2,7 @@ require('../models/database')
 const Category = require('../models/Category')
 const Blog = require('../models/Blog')
 const cloudinary = require('cloudinary').v2
+// const {marked} = require('marked');
 
 exports.homepage = async(req,resp)=>{
     
@@ -62,7 +63,12 @@ exports.exploreBlog = async(req,resp)=>{
         let blogId = req.params.id
         const blog = await Blog.findById(blogId)
         
-    resp.render('blog',{ title: 'Panda Life - Blogs', blog})
+        // if (blog) {
+        //     // Convert the blog description from Markdown to HTML
+        //     blog.description = marked(blog.description);
+        // }
+        
+        resp.render('blog',{ title: 'Panda Life - Blogs', blog})
     } catch (error) {
         resp.status(500).send({ message: error.message || "Error Occurred" })
     }  
