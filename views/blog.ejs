@@ -1,31 +1,38 @@
-<% if(blog != null){ %> 
-    
+<% if(blog !=null){ %>
+
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item"><a href="/categories">Categories</a></li>
-            <li class="breadcrumb-item"><a href="/categories/<%= blog.category %>"><%= blog.category %></a></li>
-            <li class="breadcrumb-item active" aria-current="page"><%= blog.name %></li>
+            <li class="breadcrumb-item"><a href="/categories/<%= blog.category %>">
+                    <%= blog.category %>
+                </a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <%= blog.name %>
+            </li>
         </ol>
     </nav>
-    
+
     <div class="row">
         <div class="col-12 col-md-4">
-            <img src="<%- blog.image %>" alt="<%- blog.name %>" class="img-fluid sticky-top" style="padding-top: 20px;" loading="lazy">
+            <img src="<%- blog.image %>" alt="<%- blog.name %>" class="img-fluid sticky-top" style="padding-top: 20px;"
+                loading="lazy">
         </div>
         <div class="col-12 col-md-8">
             <div class="row">
                 <div class="blog-title">
-                    <div class="col-12"><h1><%- blog.name %> </h1></div>
+                    <div class="col-12">
+                        <h1><%- blog.name %> </h1>
+                    </div>
                     <div class="col-12 mb-4"><i class="bi bi-tag"></i> <%- blog.category %> </div>
                 </div>
                 <div class="col-12" style="white-space: pre-line;">
                     <h4>Thorough Analysis:</h4>
-                    <%- blog.description %> 
+                    <%- blog.description %>
                 </div>
             </div>
         </div>
     </div>
-<% } else { %>
-    <p>No blog found</p>
-<% } %> 
+    <% } else { %>
+        <p>No blog found</p>
+        <% } %>

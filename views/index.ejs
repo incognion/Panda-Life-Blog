@@ -1,42 +1,47 @@
 <div class="row flex-lg-row-reverse align-items-center g-5 py-4 mb-4">
     <div class="col-12 col-lg-6">
-        <img src="/img/top-img.png" alt="Panda Life Blog" width="666" height="555" class="d-block mx-lg-auto img-fluid" loading="lazy"> 
+        <img src="/img/top-img.png" alt="Panda Life Blog" width="666" height="555" class="d-block mx-lg-auto img-fluid"
+            loading="lazy">
     </div>
     <div class="col-12 col-lg-6">
         <h1 class="display-4 fw-bold mb-3">Panda Life</h1>
         <h2 class="display-7 fw-bold mb-3">A community of bloggers and readers</h2>
-        <p class="lead">Welcome to Panda Life, where you can share your thoughts and discover a diverse range of blogs. Whether you're an expert or a newcomer, we invite you to contribute your knowledge and experiences. Whatever your interest—be it business, management, technology, science, humanities, or beyond—there's something here for you.</p>
-        
+        <p class="lead">Welcome to Panda Life, where you can share your thoughts and discover a diverse range of blogs.
+            Whether you're an expert or a newcomer, we invite you to contribute your knowledge and experiences. Whatever
+            your interest—be it business, management, technology, science, humanities, or beyond—there's something here
+            for you.</p>
+
         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            <a href="/explore-latest" class="btn btn-outline-light btn-dark btn-lg px-4 me-md-2" style="border: .1mm solid black;">Explore Latest Blogs</a>
+            <a href="/explore-latest" class="btn btn-outline-light btn-dark btn-lg px-4 me-md-2"
+                style="border: .1mm solid black;">Explore Latest Blogs</a>
             <a href="/explore-random" class="btn btn-outline-secondary btn-lg px-4 me-md-2">Read a random blog</a>
         </div>
     </div>
-    
+
 </div>
 
 <!-- Categories -->
 
 <div class="row row-cols-2 row-cols-lg-6 g-2 g-lg-3 py-4">
-    
-    <% if(categories != ''){ %> 
+
+    <% if(categories !='' ){ %>
         <% categories.forEach(function(category,index){ %>
-    <a href="/categories/<%- category.name %> " class="col text-center cat_link">
-        <div class="cat_img shadow">
-            <img src="/img/<%- category.image %> " alt="<%- category.name %>" loading="lazy">
-        </div>
-        <div class="pt-1"><%- category.name %></div>
-    </a>
-    <% }) %> 
-    <% } %> 
-    
-    <a href="/categories" class="col text-center cat_link">
-        <div class="cat_img shadow">
-            <img src="/img/view-all.jpg" alt="View all categories" loading="lazy">
-        </div>
-        <div class="pt-1">View All</div>
-    </a>
-    
+            <a href="/categories/<%- category.name %> " class="col text-center cat_link">
+                <div class="cat_img shadow">
+                    <img src="/img/<%- category.image %> " alt="<%- category.name %>" loading="lazy">
+                </div>
+                <div class="pt-1"><%- category.name %></div>
+            </a>
+            <% }) %>
+                <% } %>
+
+                    <a href="/categories" class="col text-center cat_link">
+                        <div class="cat_img shadow">
+                            <img src="/img/view-all.jpg" alt="View all categories" loading="lazy">
+                        </div>
+                        <div class="pt-1">View All</div>
+                    </a>
+
 </div>
 
 
@@ -47,20 +52,22 @@
         <h2>Latest Blogs</h2>
         <a href="/explore-latest" class="ms-auto">View More</a>
     </div>
-    
+
     <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-        <% if(blogger !=''){ %> 
-            <% blogger.latest.forEach(function(blog,index){ %>      
-        <a href="/blog/<%= blog._id %> " class="col text-center cat_link">
-            <div class="cat_img cat_img--large shadow">
-                <img src="<%- blog.image %> " alt="<%= blog.name %>" loading="lazy">
-            </div>
-            <div class="pt-1"><%= blog.name %></div>
-        </a>
-        <% }) %> 
-        <% } else { %> 
-            <p>No blogs found</p>
-        <% } %> 
+        <% if(blogger !='' ){ %>
+            <% blogger.latest.forEach(function(blog,index){ %>
+                <a href="/blog/<%= blog._id %> " class="col text-center cat_link">
+                    <div class="cat_img cat_img--large shadow">
+                        <img src="<%- blog.image %> " alt="<%= blog.name %>" loading="lazy">
+                    </div>
+                    <div class="pt-1">
+                        <%= blog.name %>
+                    </div>
+                </a>
+                <% }) %>
+                    <% } else { %>
+                        <p>No blogs found</p>
+                        <% } %>
     </div>
 </section>
 
@@ -71,21 +78,23 @@
         <h2>Technology Blogs</h2>
         <a href="/categories/Technology" class="ms-auto">View More</a>
     </div>
-    
+
     <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-        <% if(typeof blogger.technology !== 'undefined' && blogger.technology.length > 0){ %> 
-            <% blogger.technology.forEach(function(blog,index){ %> 
-                
-        <a href="/blog/<%= blog._id %> " class="col text-center cat_link">
-            <div class="cat_img cat_img--large shadow">
-                <img src="<%- blog.image %> " alt="<%= blog.name %>" loading="lazy">
-            </div>
-            <div class="pt-1"><%= blog.name %></div>
-        </a>
-        <% }) %> 
-        <% } else { %> 
-            <p>No blogs found</p>
-        <% } %> 
+        <% if(typeof blogger.technology !=='undefined' && blogger.technology.length> 0){ %>
+            <% blogger.technology.forEach(function(blog,index){ %>
+
+                <a href="/blog/<%= blog._id %> " class="col text-center cat_link">
+                    <div class="cat_img cat_img--large shadow">
+                        <img src="<%- blog.image %> " alt="<%= blog.name %>" loading="lazy">
+                    </div>
+                    <div class="pt-1">
+                        <%= blog.name %>
+                    </div>
+                </a>
+                <% }) %>
+                    <% } else { %>
+                        <p>No blogs found</p>
+                        <% } %>
     </div>
 </section>
 
@@ -96,21 +105,23 @@
         <h2>Management Blogs</h2>
         <a href="/categories/Management" class="ms-auto">View More</a>
     </div>
-    
+
     <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-        <% if(typeof blogger.management !== 'undefined' && blogger.management.length > 0){ %> 
-            <% blogger.management.forEach(function(blog,index){ %> 
-                
-        <a href="/blog/<%= blog._id %> " class="col text-center cat_link">
-            <div class="cat_img cat_img--large shadow">
-                <img src="<%- blog.image %> " alt="<%= blog.name %>" loading="lazy">
-            </div>
-            <div class="pt-1"><%= blog.name %></div>
-        </a>
-        <% }) %> 
-        <% } else { %> 
-            <p>No blogs found</p>
-        <% } %> 
+        <% if(typeof blogger.management !=='undefined' && blogger.management.length> 0){ %>
+            <% blogger.management.forEach(function(blog,index){ %>
+
+                <a href="/blog/<%= blog._id %> " class="col text-center cat_link">
+                    <div class="cat_img cat_img--large shadow">
+                        <img src="<%- blog.image %> " alt="<%= blog.name %>" loading="lazy">
+                    </div>
+                    <div class="pt-1">
+                        <%= blog.name %>
+                    </div>
+                </a>
+                <% }) %>
+                    <% } else { %>
+                        <p>No blogs found</p>
+                        <% } %>
     </div>
 </section>
 
@@ -122,33 +133,37 @@
         <h2>Business Blogs</h2>
         <a href="/categories/Business" class="ms-auto">View More</a>
     </div>
-    
+
     <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-        <% if(typeof blogger.business !== 'undefined' && blogger.business.length > 0){ %> 
-            <% blogger.business.forEach(function(blog,index){ %> 
-                
-        <a href="/blog/<%= blog._id %> " class="col text-center cat_link">
-            <div class="cat_img cat_img--large shadow">
-                <img src="<%- blog.image %> " alt="<%= blog.name %>" loading="lazy">
-            </div>
-            <div class="pt-1"><%= blog.name %></div>
-        </a>
-        <% }) %> 
-        <% } else { %> 
-            <p>No blogs found</p>
-        <% } %> 
+        <% if(typeof blogger.business !=='undefined' && blogger.business.length> 0){ %>
+            <% blogger.business.forEach(function(blog,index){ %>
+
+                <a href="/blog/<%= blog._id %> " class="col text-center cat_link">
+                    <div class="cat_img cat_img--large shadow">
+                        <img src="<%- blog.image %> " alt="<%= blog.name %>" loading="lazy">
+                    </div>
+                    <div class="pt-1">
+                        <%= blog.name %>
+                    </div>
+                </a>
+                <% }) %>
+                    <% } else { %>
+                        <p>No blogs found</p>
+                        <% } %>
     </div>
 </section>
 
 <!-- Submit blog -->
 
 <section class="px-4 py-5 my-5 text-center">
-    <img src="/img/post-blog.jpg" alt="Post Your Blog" class="d-block mx-auto mb-4 img-fluid" width="500" height="200" loading="lazy">
+    <img src="/img/post-blog.jpg" alt="Post Your Blog" class="d-block mx-auto mb-4 img-fluid" width="500" height="200"
+        loading="lazy">
     <h2 class="display-6 fw-bold">Post your blog here NOW</h2>
     <div class="col-lg-6 mx-auto">
         <p class="lead mb-4">Start sharing your thoughts with the world!</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <a href="/submit-blog" class="btn btn-outline-light btn-dark btn-lg px-4 me-md-2" style="border: .1mm solid black;">Submit Blog</a>
+            <a href="/submit-blog" class="btn btn-outline-light btn-dark btn-lg px-4 me-md-2"
+                style="border: .1mm solid black;">Submit Blog</a>
         </div>
     </div>
 </section>
